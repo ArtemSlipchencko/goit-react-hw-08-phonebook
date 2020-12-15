@@ -2,20 +2,22 @@ import {addNumberRequest, addNumberError, addNumberSuccess, deleteContactRequest
 import {getNumberRequest, getNumberSuccess, getNumberError} from '../actions/getContactsAction';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+
 export const addNumber = contact => dispatch => {
     dispatch(addNumberRequest());
 
-    axios.post('http://localhost:2000/contacts', contact).then(res => dispatch(addNumberSuccess(contact))).catch(err => dispatch(addNumberError()))
+    axios.post('/contacts', contact).then(res => dispatch(addNumberSuccess(contact))).catch(err => dispatch(addNumberError()))
 };
 
 export const getContacts = () => dispatch => {
     dispatch(getNumberRequest());
 
-    axios.get('http://localhost:2000/contacts').then(({data}) => dispatch(getNumberSuccess(data))).catch(err => dispatch(getNumberError()))
+    axios.get('/contacts').then(({data}) => dispatch(getNumberSuccess(data))).catch(err => dispatch(getNumberError()))
 };
 
 export const deleteContacts = (id) => dispatch => {
     dispatch(deleteContactRequest());
 
-    axios.delete(`http://localhost:2000/contacts/${id}`).then(res => dispatch(deleteContactSuccess(id)))
+    axios.delete(`/contacts/${id}`).then(res => dispatch(deleteContactSuccess(id)))
 };

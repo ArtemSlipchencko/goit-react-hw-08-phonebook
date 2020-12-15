@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-07-phonebook",
+  "name": "goit-react-hw-08-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ArtemSlipchencko.github.io/goit-react-hw-07-phonebook",
+  "homepage": "https://ArtemSlipchencko.github.io/goit-react-hw-08-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.6",
@@ -15,6 +15,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
