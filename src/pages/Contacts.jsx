@@ -1,4 +1,4 @@
-import React, {Component, lazy, Suspense} from 'react';
+import React, {Component} from 'react';
 import Header from '../components/Header/Header';
 import Form from '../components/Form/Form';
 import Contacts from '../components/Contascts/Contacts';
@@ -12,7 +12,6 @@ import {getContactsArr, getFilter} from '../redux/selectors';
 class YourContacts extends Component {
     
     state = {
-        filter: '',
         contactExist: false
     };
 
@@ -43,7 +42,8 @@ class YourContacts extends Component {
 
     render() {
 
-        const {filter, showLogo, contactExist} = this.state;
+        const {contactExist} = this.state;
+        const {filter} = this.props;
         const searchedContacts = this.findContact();
 
         return (

@@ -60,3 +60,21 @@ export const logout = () => dispatch => {
         })
         .catch(err => dispatch(logoutError(err)));
 };
+
+export const getCurrentUser = () => (dispatch, getState) => {
+    const {
+        auth: {token: persistedToken}
+    } = getState();
+
+    if (!persistedToken) {
+        return
+    };
+
+    token.set(persistedToken);
+    dispatch(getCurrentUserRequest());
+
+    axios
+        .get('users/current')
+        .then(({data}) => dispatch(getCurrentUserSuccess(data)))
+        .catch(err => getCurrentUserError(err))
+};

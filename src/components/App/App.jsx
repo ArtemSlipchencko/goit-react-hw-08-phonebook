@@ -1,8 +1,14 @@
 import React, {Component, lazy, Suspense} from 'react';
 import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getCurrentUser} from '../../redux/operations/authOperations';
 
 class App extends Component {
+
+    componentDidMount () {
+        this.props.getCurrentUser();
+    }
 
     render() {
 
@@ -24,4 +30,8 @@ class App extends Component {
 
 };
 
-export default App;
+const mapDispatchToProps = {
+    getCurrentUser
+};
+
+export default connect(null, mapDispatchToProps)(App);
