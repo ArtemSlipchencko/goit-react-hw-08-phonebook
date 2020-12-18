@@ -8,6 +8,7 @@ import {CSSTransition} from 'react-transition-group';
 import {connect} from 'react-redux';
 import {getContacts} from '../redux/operations/operations';
 import {getContactsArr, getFilter} from '../redux/selectors';
+import { Redirect } from 'react-router-dom';
 
 class YourContacts extends Component {
     
@@ -17,6 +18,9 @@ class YourContacts extends Component {
 
     componentDidMount() {
         this.props.getContacts();
+        if (!this.props.isAuth) {
+            this.props.history.push('/login');
+        }
     };
 
     findContact = () => {
@@ -57,7 +61,7 @@ class YourContacts extends Component {
                             <Contacts contacts={searchedContacts} />
                             <CSSTransition in={contactExist} unmountOnExit classNames="alert" timeout={250}>
                                 <Alert ok={this.alertOk} />
-                            </CSSTransition></> : <h2>Register or log in, please!</h2>}
+                            </CSSTransition></> : <Redirect to="/login" />}
                 
             </>
         );

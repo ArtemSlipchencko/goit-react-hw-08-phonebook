@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from '../components/Header/Header';
 import {connect} from 'react-redux';
 import {register} from '../redux/operations/authOperations';
+import { Redirect } from 'react-router-dom';
 
 class Register extends Component {
 
@@ -14,7 +15,8 @@ class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.register({...this.state});
-        this.setState({name: "", email: "", password: ""})
+        this.setState({name: "", email: "", password: ""});
+        this.props.history.push('/contacts');
     };
 
     handleChange = ({target: {name, value}}) => {
@@ -40,7 +42,7 @@ class Register extends Component {
 
                 <button type="submit">Register</button>
 
-            </form></> : <h2>You are already registered.</h2>}
+            </form></> : <Redirect to="/contacts" />}
             </>
         )
     };
