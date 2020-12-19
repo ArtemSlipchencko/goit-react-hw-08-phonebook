@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Header extends Component {
 
@@ -20,8 +21,8 @@ class Header extends Component {
                 <nav>
                 <NavLink className="nav-link" to="/">Home</NavLink>
                 <NavLink className="nav-link" to="/contacts">Contacts</NavLink>
-                <NavLink className="nav-link" to="/register">Register</NavLink>
-                <NavLink className="nav-link" to="/login">Login</NavLink>
+                {!this.props.isAuth ? <NavLink className="nav-link" to="/register">Register</NavLink> : null}
+                {!this.props.isAuth ?  <NavLink className="nav-link" to="/login">Login</NavLink> : null}
                 </nav>
             </header>
             </CSSTransition>
@@ -30,4 +31,8 @@ class Header extends Component {
     
 };
 
-export default Header;
+const mapStateToProps = state => ({
+    isAuth: state.auth.token,
+});
+
+export default connect(mapStateToProps)(Header);
